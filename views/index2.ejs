@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title><%= title %></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<!-- style sidebar -->
+<style>
+  body {
+    margin: 0;
+    font-family: "Lato", sans-serif;
+  }
+  
+  .sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  
+  .sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+  }
+   
+  .sidebar a.active {
+    background-color: #0e72c9;
+    color: white;
+  }
+  
+  .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+  
+  div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+  }
+  
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+  }
+  
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+  }
+  .avatar{
+		background:rgba(0,0,0,0.1);
+		padding:2em 0.5em;
+		text-align:center;
+  }
+		img{
+			width:100px;
+			border-radius:50%;
+			overflow:hidden;
+			border:4px solid ;
+		}
+  </style>
+<body>
+
+
+<!-- The sidebar -->
+<div class="sidebar">
+  <header class="avatar">
+		<img src="https://yt3.ggpht.com/ytc/AKedOLQvinibeyCPAwU8x_979UKmucy8h0pFMV6OyILh=s900-c-k-c0x00ffffff-no-rj" />
+  </header>
+  <a href="/">Etudiant</a>
+  <a class="active" href="/filiere">Filiere</a>
+</div>
+
+<!-- Page content -->
+
+<div class="container">
+  <h2><%= title %></h2>
+  <a href="/addfiliere" class="btn btn-sm btn-primary">Add Filiere</a><br/><br/>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>NOM</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% filiere.forEach(function(f){ %>
+            <tr>
+                <td><%= f.id %></td>
+                <td><%= f.nom %></td>
+                
+                <td>
+                    <a href="editfiliere/<%= f.id %>" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="deletefiliere/<%= f.id %>" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+  </table>
+</div>
+<a href="/">etudiant</a>
+
+</body>
+</html>
